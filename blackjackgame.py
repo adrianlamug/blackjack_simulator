@@ -27,8 +27,16 @@ class Player:
 
     def check_score(self):
         s = 0
+        ace_counter = 0
         for i in self.cards:
+            if self.score(i) == 11:
+                ace_counter += 1
             s += self.score(i)
+
+        while ace_counter != 0 and s > 21:
+            ace_counter -= 1
+            s -= 10
+
         return s
 
     def score(self, value):
